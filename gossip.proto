@@ -4,13 +4,13 @@ package gossip;
 
 option go_package = "./;gossip";
 
-import "google/protobuf/empty.proto";
-
 service GossipApi {
     rpc SubscribeToEvents (User) returns (stream Event) {}
-    rpc SendEvent(Event) returns (google.protobuf.Empty) {}
-    rpc UnsubscribeFromEvents (User) returns (google.protobuf.Empty) {}
+    rpc SendEvent(Event) returns (Empty) {}
+    rpc UnsubscribeFromEvents (User) returns (Empty) {}
 }
+
+message Empty {}
 
 message User {
     string id = 1;
