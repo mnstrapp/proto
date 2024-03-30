@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package gossip;
+
+option go_package = "./;gossip";
+
+import "google/protobuf/empty.proto";
+
+service GossipApi {
+    rpc SubscribeToEvents (User) returns (stream Event) {}
+    rpc SendEvent(Event) returns (google.protobuf.Empty) {}
+    rpc UnsubscribeFromEvents (User) returns (google.protobuf.Empty) {}
+}
+
+message User {
+    string id = 1;
+}
+
+message Event {
+    EventType type = 1;
+    optional string from_id = 2;
+    optional string to_id = 3;
+    uint64 timestamp = 4;
+    oneof body {
+        NoopEvent noop = 5;
+        MessageEvent message = 6;
+        UserEvent user = 7;
+    }
+}
+
+enum EventType {
+    NoopEventType = 0;
+    MessageEventType = 1;
+    UserEventType = 2;
+}
+
+message NoopEvent {}
+
+message MessageEvent {
+    bytes content = 1;
+}
+
+message UserEvent {
+    string user_id = 1;
+    NetworkStatus status = 2;
+}
+
+enum NetworkStatus {
+    Online = 0;
+    Offline = 1;
+}
