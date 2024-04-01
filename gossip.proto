@@ -25,6 +25,7 @@ message Event {
         NoopEvent noop = 5;
         MessageEvent message = 6;
         UserEvent user = 7;
+        DoneEvent done = 8;
     }
 }
 
