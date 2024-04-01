@@ -21,12 +21,10 @@ message Event {
     optional string from_id = 2;
     optional string to_id = 3;
     uint64 timestamp = 4;
-    oneof body {
-        NoopEvent noop = 5;
-        MessageEvent message = 6;
-        UserEvent user = 7;
-        DoneEvent done = 8;
-    }
+    optional NoopEvent noop = 5;
+    optional MessageEvent message = 6;
+    optional UserEvent user = 7;
+    optional DoneEvent done = 8;
 }
 
 enum EventType {
