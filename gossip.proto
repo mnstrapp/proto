@@ -32,6 +32,7 @@ enum EventType {
     NoopEventType = 0;
     MessageEventType = 1;
     UserEventType = 2;
+    DoneEventType = 3;
 }
 
 message NoopEvent {}
@@ -41,6 +42,11 @@ message MessageEvent {
 }
 
 message UserEvent {
+    string user_id = 1;
+    NetworkStatus status = 2;
+}
+
+message DoneEvent {
     string user_id = 1;
     NetworkStatus status = 2;
 }
