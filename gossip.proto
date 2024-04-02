@@ -6,7 +6,8 @@ option go_package = "./;gossip";
 
 service GossipApi {
     rpc SubscribeToEvents (User) returns (stream Event) {}
-    rpc SendEvent(Event) returns (Empty) {}
+    rpc SendEvent (Event) returns (Empty) {}
+    rpc StreamEvents (stream Event) returns (stream Event) {}
     rpc UnsubscribeFromEvents (User) returns (Empty) {}
 }
 
